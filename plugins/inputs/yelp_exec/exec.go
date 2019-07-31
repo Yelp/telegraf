@@ -150,7 +150,7 @@ func (e *Exec) ProcessCommand(command string, acc telegraf.Accumulator, wg *sync
 		return
 	}
 
-	metrics, err := e.parser.Parse(out)
+	metrics, err := e.parser.Parse(append(out, errbuf...))
 	if err != nil {
 		acc.AddError(err)
 		return
